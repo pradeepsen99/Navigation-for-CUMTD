@@ -35,8 +35,9 @@
 
 /// This struct is for the JSON recieved through the current list of stops based on the user's loction.
 struct mtd_stop_loc: Codable{
+    //let changeset_id: String
+    //let new_changeset: String
     let stops: [STOP_INFO]
-    
     struct STOP_INFO: Codable{
         let stop_id: String
         let stop_name: String
@@ -56,8 +57,9 @@ struct mtd_stop_loc: Codable{
 
 /// This struct is for the JSON recieved through the current list of routes based on the given stop id chosen by the user.
 struct mtd_routes: Codable{
+    //let changeset_id: String
+    //let new_changeset: String
     let departures: [DEPATURE_INFO]
-    
     struct DEPATURE_INFO: Codable{
         let stop_id: String
         let headsign: String
