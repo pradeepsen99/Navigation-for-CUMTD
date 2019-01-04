@@ -53,20 +53,15 @@ class NearestViewController: UITableViewController {
     let kOpenCellHeight: CGFloat = 488
     let kRowsCount = 10
     var cellHeights: [CGFloat] = []
-    var colors = [flatRed, flatBlue, flatGreen, flatYellow, flatPurple, flatDarkGreen]
-    var titles = ["Tiger Inn", "Ivy Club", "Tower Club", "Chi Phi Rager", "Dave's BDay", "Pub Night"]
+    var colors = [flatRed, flatBlue, flatGreen, flatYellow, flatPurple, flatDarkGreen,flatRed, flatBlue, flatGreen, flatYellow, flatPurple, flatDarkGreen,flatRed, flatBlue, flatGreen]
+    var titles = ["LOADING"]
     
-    var descriptions: NSArray = ["Tiger Inn is one of eleven active eating clubs at Princeton.",
-                                 "Ivy Club is one of eleven active eating clubs at Princeton.",
-                                 "Tower Club is one of eleven active eating clubs at Princeton.",
-                                 "Chi Phi is having a rager today. Don't miss out #fraternity",
-                                 "You already know who it is. Your boy dave is throwing down.",
-                                 "Alpha Dog Brewery is hosting a pub crawl for fine food and drink."]
+    var descriptions: NSArray = ["LOADING"]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setup()
+        setup()
         self.lat = (self.locationManager.location?.coordinate.latitude)!
         self.long = (self.locationManager.location?.coordinate.longitude)!
         print(lat.description + "\n" + long.description)
@@ -74,8 +69,12 @@ class NearestViewController: UITableViewController {
         
     }
     
+    @IBAction func unwindToPasses(segue:UIStoryboardSegue) {
+        
+    }
+    
     private func setup() {
-        cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
+        cellHeights = Array(repeating: kCloseCellHeight, count: count)
         tableView.estimatedRowHeight = kCloseCellHeight
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = .black
@@ -125,19 +124,13 @@ class NearestViewController: UITableViewController {
                     }
                     self.descriptions = self.stopNameArr
                     self.titles = self.stopDistance as! [String]
-                    self.setup()
-                    if(!self.initialLoad){
-                        self.initialLoad = true
-                        print("count -> " + self.stopNameArr.count.description)
-                        //self.displayTable()
-                        
-                    }
+                    self.count = 15
+                    self.cellHeights = Array(repeating: self.kCloseCellHeight, count: self.count)
                     if(!self.isStopArrEmpty()){
+                        
                         self.tableView.reloadData()
                         //print(self.view.subviews.count)
                     }
-                    
-                    
                 } catch let err {
                     print("Error Downloading data", err)
                 }
@@ -146,7 +139,7 @@ class NearestViewController: UITableViewController {
         }
     }
     
-    var count = 6
+    var count = 1
     
     func isStopArrEmpty() -> Bool{
         return stopNameArr.count == 0
@@ -173,7 +166,12 @@ extension NearestViewController {
         cell.closedBGColor.backgroundColor = colors[indexPath.row]
         cell.descLabel.text = descriptions[indexPath.row] as? String
         
-
+        
+        if cellHeights[indexPath.row] == kCloseCellHeight {
+            cell.unfold(false, animated: false, completion:nil)
+        } else {
+            cell.unfold(true, animated: false, completion: nil)
+        }
         
         cell.number = indexPath.row
     }
@@ -187,10 +185,11 @@ extension NearestViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return kCloseCellHeight
+        return cellHeights[indexPath.row]
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let cell = tableView.cellForRow(at: indexPath) as! FoldingCell
         
         if cell.isAnimating() {
@@ -213,6 +212,7 @@ extension NearestViewController {
             tableView.beginUpdates()
             tableView.endUpdates()
         }, completion: nil)
+        
     }
     
 }

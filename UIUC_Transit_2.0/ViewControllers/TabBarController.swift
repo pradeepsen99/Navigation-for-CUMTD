@@ -34,12 +34,13 @@ class TabBarController: UIViewController {
         let vc2 = UIStoryboard(name: "Nearest", bundle: nil).instantiateInitialViewController()!
         let vc3 = UIStoryboard(name: "AllStops", bundle: nil).instantiateInitialViewController()!
         
+        
         //Add DarkTheme to the TabBar
         self.tabBar = BATabBarController()
         self.tabBar.tabBarItemStrokeColor = .red;
         self.tabBar.viewControllers = [vc1, vc2, vc3]
         self.tabBar.tabBarItems = [hubItem, libraryItem, settingsItem]
-        self.tabBar.setSelectedView(vc1, animated: false)
+        self.tabBar.setSelectedView(vc1, animated: true)
         self.tabBar.tabBarBackgroundColor = UIColor(red: 1/256, green: 4/255, blue: 13/255, alpha: 1)
         self.view.addSubview(self.tabBar.view)
     }

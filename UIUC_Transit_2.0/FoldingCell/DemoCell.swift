@@ -12,10 +12,13 @@ import FoldingCell
 class DemoCell: FoldingCell {
   
   @IBOutlet weak var closeNumberLabel: UILabel!
+  @IBOutlet weak var openNumberLabel: UILabel!
     @IBOutlet weak var closeTitle: UILabel!
+    @IBOutlet weak var openTitle: UILabel!
     @IBOutlet weak var openBarColo: UIView!
     @IBOutlet weak var bigBGColor: UIView!
     @IBOutlet weak var closedBGColor: UIView!
+    @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var descLabel: UILabel!
     
     var titleText = ""
@@ -23,6 +26,7 @@ class DemoCell: FoldingCell {
     var number: Int = 0 {
     didSet {
       closeNumberLabel.text = titleText
+      openNumberLabel.text = titleText
         
     }
   }
