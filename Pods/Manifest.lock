@@ -1,0 +1,28 @@
+PODS:
+  - BATabBarController (0.1.5):
+    - Masonry
+  - FoldingCell (4.0.1)
+  - Masonry (1.1.0)
+  - paper-onboarding (5.0.0)
+
+DEPENDENCIES:
+  - BATabBarController
+  - FoldingCell
+  - paper-onboarding
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - BATabBarController
+    - FoldingCell
+    - Masonry
+    - paper-onboarding
+
+SPEC CHECKSUMS:
+  BATabBarController: 5613abe7e9e840e4d47deecef6f5082187b24ecf
+  FoldingCell: acf29a96085b7ab96234be75d543f5640ead0b3c
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  paper-onboarding: a2e3a710fd27ac0b5635ec5490660e7ec09289b5
+
+PODFILE CHECKSUM: baa7bdc19c113ed685a6cb5fa89409e1344c4093
+
+COCOAPODS: 1.5.3

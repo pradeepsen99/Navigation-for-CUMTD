@@ -1,0 +1,6 @@
+framework module Pods_UIUC_Transit_2_0 {
+  umbrella header "Pods-UIUC_Transit_2.0-umbrella.h"
+
+  export *
+  module * { export * }
+}
